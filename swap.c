@@ -9,15 +9,16 @@
 void swap(stack_t **stack, unsigned int line_number)
 {
 	stack_t *ptr1, *ptr2;
+	(void) (*stack);
 
-	if (*stack == NULL || (*stack) == NULL)
+	if (globals->stack_length < 2)
 	{
 		dprintf(2, "L%d: can't swap , stack too short\n", line_number);
 		free_all_args();
 		exit(EXIT_FAILURE);
 	}
 	
-	ptr1 = *stack;
+	ptr1 = globals->head;
 	ptr2 = ptr1->next;
 	ptr1->next = ptr2->next;
 	if (ptr1->next)
@@ -26,5 +27,5 @@ void swap(stack_t **stack, unsigned int line_number)
 	ptr1->prev = ptr2;
 	ptr2->prev = NULL;
 
-	*stack = ptr2;
+	globals->head = ptr2;
 }

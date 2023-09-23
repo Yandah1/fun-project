@@ -8,16 +8,15 @@
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *temp;
-
-	if (globals->head == NULL)
-		return;
+	stack_t *temp = globals->head;
 
 	(void) line_number;
 	(void) stack;
 
-	temp = globals->head;
-	while (temp != NULL)
+	if (!temp)
+		return;
+
+	while (temp)
 	{
 		printf("%d\n", temp->n);
 		temp = temp->next;

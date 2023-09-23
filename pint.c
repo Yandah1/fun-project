@@ -8,13 +8,14 @@
  */
 void pint(stack_t **stack, unsigned int line_number)
 {
+	(void) (*stack);
 
-	if (*stack == NULL)
+	if (!globals->head)
 	{
-		dprintf(2, "L%d: can't pint, stack is empty\n", line_number);
+		dprintf(2, "L%d: can't pint, stack: empty\n", line_number);
 		free_all_args();
 		exit(EXIT_FAILURE);
 	}
 
-	printf("%d\n", (*stack)->n);
+	printf("%d\n", globals->head->n);
 }

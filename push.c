@@ -6,27 +6,41 @@
  * @lineNum: line num where push is called
  *
  */
-void push(stack_t **stack, unsigned int lineNum)
+void push(stack_t **stack, unsigned int line_number)
 {
+	globals->tail = globals->head;
 	if (globals->num_tokens <= 1 || !(is_number(globals->tokens[1])))
 	{
 		free_globals();
-		dprintf(2, "L%d: usage: push integer\n", lineNum);
+		dprintf(2, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
-	*stack = malloc(sizeof(stack_t));
+	(*stack) = malloc(sizeof(stack_t));
 	if (*stack == NULL)
 		malloc_failed();
-	(*stack)->next = (*stack)->prev = NULL;
-
 	(*stack)->n = (int) atoi(globals->tokens[1]);
 
-	if (globals->head != NULL)
+	(*stack)->next = (*stack)->prev = NULL;
+
+	if (globals->head)
 	{
-		(*stack)->next = globals->head;
-		globals->head->prev = *stack;
+		while (globals->tail->next)
+			globals->tail = globals->tail->next;
+		if (globals->i == 0)
+		{
+			(*stack)->next = globals->head;
+			globals->head->prev = (*stack);
+			globals->head = (*stack);
+		}
+		else if (globals->i == 1)
+		{
+			globals->tail->next = (*stack);
+			(*stack)->prev = globals->tail;
+			globals->tail = (*stack);
+		}
 	}
-	globals->head = *stack;
+	else
+		globals->head = (*stack);
 	globals->stack_length += 1;
 }

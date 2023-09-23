@@ -51,9 +51,11 @@ typedef struct global_s
 	char *line;
 	char **tokens;
 	int num_tokens;
+	unsigned int i;
 	unsigned int line_number;
 	instruction_t *instruction;
 	stack_t *head;
+	stack_t *tail;
 	unsigned int stack_length;
 
 } Global_d;

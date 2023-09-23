@@ -17,15 +17,16 @@ void fetch_instruction(void)
 
 
 	if (globals->num_tokens == 0)
+		return;
+	for (; instructions[i].opcode != NULL; i++)
 	{
-		if (strcmp(instructions[i].opcode, globals->tokens[0])
-				== 0)
+		if (strcmp(instructions[i].opcode, globals->tokens[0]) == 0)
 		{
 			globals->instruction->opcode = instructions[i].opcode;
 			globals->instruction->f = instructions[i].f;
+			return;
 		}
 	
-		return;
 	}
 
 	invalid_instruction();
@@ -36,8 +37,7 @@ void fetch_instruction(void)
 
 void invalid_instruction(void)
 {
-	dprintf(2, "L%d:  unknown instruction %s\n",
-			globals->line_number, globals->tokens[0]);
+	dprintf(2, "L%d:  unknown instruction %s\n", globals->line_number, globals->tokens[0]);
 	close_stream();
 	free_tokens();
 	free_globals();
