@@ -1,0 +1,19 @@
+{
+  "name": "ad-luxe-scents",
+  "version": "1.0.0",
+  "description": "Ad-Luxe Scents - Your go-to destination for premium and exquisite perfumes. Explore a world of captivating fragrances that elevate your senses and define your unique style.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Nonku Khanyile",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.18.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yandah1/ad-luxe-scents.git"
+  }
+}
